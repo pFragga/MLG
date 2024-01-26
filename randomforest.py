@@ -5,23 +5,31 @@ import numpy as np
 
 
 class RandomForest:
-    numberOfTrees = 2  # default value, change to your liking
-
     def __init__(self, numberOfTrees: int, features: iter):
         self.numberOfTrees = numberOfTrees
+        self.trees = []
         self.features = features
 
-    def permutate(self, data: iter, k: int):
+    def bootstrap(self, x, y):
         """
-        Create a random permutation of the given dataset. Return the new
-        dataset excluding the k first elements.
+        First step of "bagging" procedure.
         """
-        new_data = np.random.permutation(data)
-        return new_data[k:]
+        pass
+
+    def aggregate(self, x, y):
+        """
+        Second step of "bagging" procedure.
+        """
+        pass
+
+    def train(self, x, y):
+        """
+        Here x and y are the training data.
+        """
+        pass
 
     def fit(self, x, y):
         """
-        Create all trees in the forest
+        Here x and y are the test data.
         """
-        for i in range(self.numberOfTrees):
-            id3.ID3.fit(x, y)
+        pass

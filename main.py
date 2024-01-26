@@ -55,7 +55,9 @@ if __name__ == '__main__':
     elif sel_alg == 2:
         numberOfTrees = int(input('Number of trees (integer value): '))
         print(f'Creating a Random Forest with {numberOfTrees} trees...')
-        rforest.RandomForest(numberOfTrees, (x_test, y_test))
+        forest = rforest.RandomForest(numberOfTrees, vocab[:10])  # FIXME
+        forest.train(x_train_bin[:100], y_train[:100])
+        forest.fit(x_test_bin, y_test)
     elif sel_alg == 3:
         print('Not yet implemented.')
         exit(2)
