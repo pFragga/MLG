@@ -48,10 +48,10 @@ if __name__ == '__main__':
             \n[2]: Random Forest\n[3]: Adaboost\nYour selection: '))
     if sel_alg > 3 or sel_alg < 1:
         print('Invalid selection.')
-        exit(1)
+        # exit(1)
     elif sel_alg == 1:
         print('Not yet implemented.')
-        exit(2)
+        # exit(2)
     elif sel_alg == 2:
         numberOfTrees = int(input('Number of trees (integer value): '))
         print(f'Creating a Random Forest with {numberOfTrees} trees...')
@@ -60,4 +60,4 @@ if __name__ == '__main__':
         forest.fit(x_test_bin, y_test)
     elif sel_alg == 3:
         print('Not yet implemented.')
-        exit(2)
+        # exit(2)
