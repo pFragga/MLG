@@ -13,7 +13,10 @@ index_from = 3
 
 # retrieve training sequences
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(
-        start_char=start_char, oov_char=oov_char, index_from=index_from
+        start_char=start_char,
+        oov_char=oov_char,
+        index_from=index_from,
+        num_words=500  # not mandatory, just speeds up debugging
  )
 
 # retrieve word index and create it's inverse
@@ -32,14 +35,17 @@ x_train = np.array([' '.join([index_to_word[idx] for idx in text])
 x_test = np.array([' '.join([index_to_word[idx] for idx in text])
                    for text in x_test])
 
-# vectorize each review and create the vocabulary
+# vectorize each review using CountVectorizer
+# min-df: ignore terms with lower document frequency
 binary_vectorizer = CountVectorizer(binary=True, min_df=100)
 x_train_bin = binary_vectorizer.fit_transform(x_train).toarray()
 x_test_bin = binary_vectorizer.fit_transform(x_test).toarray()
+
+# CountVectorizer produces a dictionary which maps terms to feature indeces
 vocab = np.array(list(binary_vectorizer.vocabulary_.keys()))
 
-# TODO force constraints on vocabulary words
-# 1. contains the m most common,
+# TODO force constraints on vocabulary
+# 1. contains the m most common words,
 # 2. ignores the n most common,
 # 3. ignores the k rarest.
 
@@ -48,7 +54,7 @@ if __name__ == '__main__':
             \n[2]: Random Forest\n[3]: Adaboost\nYour selection: '))
     if sel_alg > 3 or sel_alg < 1:
         print('Invalid selection.')
-        # exit(1)
+        exit(1)
     elif sel_alg == 1:
         print('Not yet implemented.')
         # exit(2)
