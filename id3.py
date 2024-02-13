@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from random import randint
 from statistics import mode
 import numpy as np
 import math
@@ -44,8 +45,14 @@ class ID3:
             return Node(checking_feature=None, is_leaf=True,
                         category=mode(y_train.flatten()))
 
+        # ***modification for RandomForest***
+        # calculate igs from a random subset of features
+        max_features = int(np.sqrt(len(features)))  # recommended amount
+        _features = np.array([features[randint(0, len(features) - 1)]
+                              for i in range(max_features)])
+
         igs = list()
-        for feat_index in features.flatten():
+        for feat_index in _features.flatten():
             igs.append(self.calculate_ig(y_train.flatten(), [example[feat_index] for example in x_train]))
 
         max_ig_idx = np.argmax(np.array(igs).flatten())

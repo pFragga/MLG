@@ -80,11 +80,13 @@ if __name__ == '__main__':
         print('Not yet implemented.')
         exit(1)
     elif sel_alg == 2:
-        numberOfTrees = int(input('Number of trees (integer value): '))
-        print(f'Creating a Random Forest with {numberOfTrees} tree(s)...')
+        numberOfTrees = int(input('Number of trees (positive integer): '))
         forest = rforest.RandomForest(numberOfTrees, vocab)
-        forest.train(x_train_bin, y_train)
-        # forest.fit(x_test_bin, y_test)
+        print(f'Training a Random Forest with {numberOfTrees} tree(s)...')
+        forest.fit(x_train_bin, y_train)
+        print('Fitting the Random Forest to the test data...')
+        result = forest.predict(x_test_bin)
+        print(f'===\nExpected (y_test):\n{y_test}\nGot (result):\n{result}')
     elif sel_alg == 3:
         print('Not yet implemented.')
         # exit(2)
