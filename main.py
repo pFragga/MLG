@@ -7,15 +7,15 @@ import sys
 import tensorflow as tf
 
 
-def show_usage(status_code=1):
+def show_usage():
     print('Usage:\n\t[python] ./main.py <m> <n> <k>\n'
-          '(Hint: try m=1000, n=100 and k=100)', file=sys.stderr)
-    exit(status_code)
+          '(Hint: try m=100, n=50 and k=50)', file=sys.stderr)
+    exit(2)
 
 
-m = 1000  # keep the m most frequent words,
-n = 100  # ignore the n most frequent ones,
-k = 100  # and ignore the k least frequent ones
+m = 100  # keep the m most frequent words,
+n = 50  # ignore the n most frequent ones,
+k = 50  # and ignore the k least frequent ones
 
 if __name__ == '__main__':
     args = sys.argv[1:]
@@ -68,14 +68,17 @@ x_test_bin = binary_vectorizer.fit_transform(x_test).toarray()
 vocab = np.array([key for key in binary_vectorizer.vocabulary_.keys()])
 
 if __name__ == '__main__':
+    print(f'Params & Options:\nm = {m}\nn = {n}\nk = {k}\nVocab size: '
+          f'{vocab.shape}\n===')
+
     sel_alg = int(input('Select an algorithm:\n[1]: Naive Bayes \
             \n[2]: Random Forest\n[3]: Adaboost\nYour selection: '))
     if sel_alg > 3 or sel_alg < 1:
         print('Invalid selection.')
-        exit(1)
+        exit(-1)
     elif sel_alg == 1:
         print('Not yet implemented.')
-        # exit(2)
+        exit(1)
     elif sel_alg == 2:
         numberOfTrees = int(input('Number of trees (integer value): '))
         print(f'Creating a Random Forest with {numberOfTrees} tree(s)...')
