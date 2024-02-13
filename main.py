@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from sklearn.feature_extraction.text import CountVectorizer
+import Adaboost as ada
 import numpy as np
 import randomforest as rforest
 import sys
@@ -88,5 +89,5 @@ if __name__ == '__main__':
         result = forest.predict(x_test_bin)
         print(f'===\nExpected (y_test):\n{y_test}\nGot (result):\n{result}')
     elif sel_alg == 3:
-        print('Not yet implemented.')
-        # exit(2)
+        numberOfLoops = int(input('Number of loops (positive integer): '))
+        ada.Adaboost(numberOfLoops, x_train_bin, y_test)
