@@ -14,6 +14,11 @@ def show_usage():
     exit(2)
 
 
+# TODO
+def draw_graph():
+    pass
+
+
 m = 100  # keep the m most frequent words,
 n = 50  # ignore the n most frequent ones,
 k = 50  # and ignore the k least frequent ones
@@ -88,6 +93,9 @@ if __name__ == '__main__':
         print('Fitting the Random Forest to the test data...')
         result = forest.predict(x_test_bin)
         print(f'===\nExpected (y_test):\n{y_test}\nGot (result):\n{result}')
+
+        # TODO draw graphs and plots with results
+
     elif sel_alg == 3:
         numberOfLoops = int(input('Number of loops (positive integer): '))
         ada.Adaboost(numberOfLoops, x_train_bin, y_test)
