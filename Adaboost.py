@@ -1,6 +1,6 @@
 import numpy as np
 import math
-
+#commited version to be improved
 class Example:
 
     def __init__(self,x, y, weight):
